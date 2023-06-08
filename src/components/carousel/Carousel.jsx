@@ -24,7 +24,21 @@ const Carousel = ({ data, loading }) => {
 	const { url } = useSelector((state) => state.home);
 	const navigate = useNavigate();
 	const navigation = (dir) => {
-		console.log(dir);
+		const container = carouselContainer.current;
+
+		const scrollAmount =
+			dir === "left"
+				? container.scrollLeft - (container.offsetWidth + 20)
+				: container.scrollLeft + (container.offsetWidth + 20);
+
+		// console.log("container.scrollLeft ", container.scrollLeft);
+		// console.log("container.offsetWidth ", container.offsetWidth);
+		// console.log("scrollAmount ", scrollAmount);
+
+		container.scrollTo({
+			left: scrollAmount,
+			behavior: "smooth",
+		});
 	};
 
 	const skItem = () => {
@@ -51,7 +65,7 @@ const Carousel = ({ data, loading }) => {
 					onClick={() => navigation("right")}
 				/>
 				{!loading ? (
-					<div className="carouselItems">
+					<div className="carouselItems" ref={carouselContainer}>
 						{data?.map((item) => {
 							const posterUrl = item.poster_path
 								? url.poster + item.poster_path
