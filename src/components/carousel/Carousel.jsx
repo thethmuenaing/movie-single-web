@@ -16,7 +16,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endpoint }) => {
 	// console.log("data ", data);
 	const carouselContainer = useRef();
 	const { url } = useSelector((state) => state.home);
@@ -72,7 +72,9 @@ const Carousel = ({ data, loading }) => {
 								<div
 									key={item.id}
 									className="carouselItem"
-									onClick={() => navigate(`/${item.media_type}/${item.id}`)}
+									onClick={() =>
+										navigate(`/${item.media_type || endpoint}/${item.id}`)
+									}
 								>
 									<div className="posterBlock">
 										<Img src={posterUrl} />
