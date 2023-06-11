@@ -64,7 +64,7 @@ const Header = () => {
 
 	const navigationHandler = (type) => {
 		if (type === "movie") {
-			navigate("/export/movie");
+			navigate("/explore/movie");
 		} else {
 			navigate("/explore/tv");
 		}
