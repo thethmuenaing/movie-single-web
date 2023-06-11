@@ -49,6 +49,7 @@ const Header = () => {
 			setTimeout(() => {
 				setShowSearch(true);
 			}, 1000);
+			setQuery("");
 		}
 	};
 	const openSearch = () => {
@@ -103,11 +104,13 @@ const Header = () => {
 						<div className="searchInput">
 							<input
 								type="text"
+								value={query}
 								placeholder="Search for a movie or tv show..."
 								onChange={(e) => {
 									setQuery(e.target.value);
 								}}
 								onKeyUp={searchQueryHandler}
+								autoFocus
 							/>
 							<VscChromeClose onClick={() => setShowSearch(false)} />
 						</div>
